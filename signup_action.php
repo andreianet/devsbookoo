@@ -15,8 +15,8 @@ if ($name && $email && $password && $birthDate) {
     /**
      * Verificar mask birthdate
      */
-    $birthdate = explode("/",$birthdate);
-    if ($count($birthdate) != 3) {
+    $birthdate = explode("/", $birthdate);
+    if (count($birthdate) != 3) {
         $_SESSION['flash'] = 'Data de nascimento inválida.';
         header("Location : ".$base."/signup.php");
         exit;
@@ -24,7 +24,7 @@ if ($name && $email && $password && $birthDate) {
     /**
      * Verificar o Data preenchida
      */
-    $birthdate = $birthdate[2].'-'.$birthdate[1].'-'.$birthdate[0];
+    $birthdate = $birthdate[2].'-'.$birthdate[1].'-'.$birthdate[0];//y/m/d
     if (strtotime($birthdate) === false) {
         $$_SESSION['flash'] = 'Data de nascimento inválida.';
         header("Location : ".$base."/signup.php");
@@ -45,7 +45,6 @@ if ($name && $email && $password && $birthDate) {
     }
     
 }
-
 $_SESSION['flash'] = 'Campos não enviados!.';
 header("Location : ".$base."/login.php");
 exit;

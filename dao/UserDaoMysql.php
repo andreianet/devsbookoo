@@ -6,7 +6,10 @@ class UserDaoMysql implements UserDAO
 {
     private $pdo;
 
-    public function __construct(PDO $driver)
+    /**
+     * @param PDO $driver
+     */
+    public function __construct($driver)
     {
         $this->pdo = $driver;
     }
@@ -18,6 +21,7 @@ class UserDaoMysql implements UserDAO
         $u = new User();
         $u->id = $array['id'] ?? 0;
         $u->email = $array['email'] ?? 0;
+        $u->password = $array['password'] ?? 0;
         $u->name = $array['name'] ?? 0;
         $u->birthdate = $array['birthdate'] ?? 0;
         $u->city = $array['city'] ?? 0;
@@ -73,7 +77,8 @@ class UserDaoMysql implements UserDAO
             avatar = :avatar,
             cover = :cover,
             token = :token
-            WHERE id = :id");
+            WHERE id = :id
+        ");
 
         $sql->bindValue(':email', $u->email);
         $sql->bindValue(':password', $u->password);
@@ -96,13 +101,16 @@ class UserDaoMysql implements UserDAO
         ) VALUES (
             :email, :password, :name, :birthdate, :token
         )");
-
+       
         $sql->bindValue(':email', $u->email);
         $sql->bindValue(':password', $u->password);
         $sql->bindValue(':name', $u->name);
         $sql->bindValue(':birthdate', $u->birthdate);
         $sql->bindValue(':token', $u->token);
         $sql->execute();
+        
+        // echo "Inseriu";
+        // exit; 
 
         return true;
     }

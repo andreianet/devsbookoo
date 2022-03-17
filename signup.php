@@ -1,14 +1,14 @@
 <?php
-require_once './config.php';
+require_once 'config.php';
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <title>Login</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/>
-    <link rel="stylesheet" href="<?=$base;?>/assets/css/login.css" />
+    <link rel="stylesheet" href="<?= /** @var TYPE_NAME $base */
+    $base; ?>/assets/css/login.css" />
 </head>
 <body>
     <header>
